@@ -28,6 +28,24 @@ This is a backend API for a premium content platform built with Python, FastAPI,
    uvicorn main:app --reload
    ```
 
+## Production Deployment (Render)
+
+This API can easily be deployed on [Render.com](https://render.com) for free:
+
+1. **Database Setup**:
+   - Create a **New > PostgreSQL** database on Render.
+   - Copy the "Internal Database URL" (if hosting the web service on Render too) or "External Database URL".
+
+2. **Web Service Setup**:
+   - Create a **New > Web Service** connected to your GitHub repository.
+   - **Environment**: Python
+   - **Build Command**: `pip install -r requirements.txt`
+   - **Start Command**: `uvicorn main:app --host 0.0.0.0 --port $PORT`
+   - **Environment Variables**: Add a variable named `DATABASE_URL` and paste your Render Database URL here. 
+     *(Change `postgres://` to `postgresql://` in the URL if SQLAlchemy complains).*
+
+Your app will automatically pull from GitHub and deploy!
+
 ## API Documentation
 The best way to interact with the API is through FastAPI's automatic, interactive documentation. Once the server is running, simply open your browser and go to:
 **[http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)**
